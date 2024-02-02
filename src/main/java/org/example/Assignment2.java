@@ -1,3 +1,5 @@
+// Student name: Koichi Nakata (ID: 1963595)
+
 package org.example;
 
 import javax.swing.*;
@@ -11,12 +13,13 @@ public class Assignment2 {
         while (true) {
             double loanAmount = (double)askUserInput(true);
             int years = askUserInput(false);
+
             int response = confirmInformation(loanAmount, years);
 
             if (response == JOptionPane.YES_OPTION) {
                 displayResult(loanAmount, years);
                 break;
-            } else if (response == JOptionPane.CANCEL_OPTION) break;
+            } else if (response == JOptionPane.CANCEL_OPTION) System.exit(0);
         }
 
     }
@@ -31,6 +34,9 @@ public class Assignment2 {
         while (true) {
             String inputStr = JOptionPane.showInputDialog(null, message,
                     title, JOptionPane.INFORMATION_MESSAGE);
+
+            if (inputStr == null) System.exit(0);
+
             try {
                 value = Integer.parseInt(inputStr);
                 if (value > 0) break;
@@ -64,7 +70,7 @@ public class Assignment2 {
             double monthlyPay = calcMonthlyPayment(loanAmount, years, annualRate);
             double totalPay = calcTotalPayment(monthlyPay, years);
 
-            message += String.format("%16.3f%22.2f%22.2f\n", annualRate, monthlyPay, totalPay);
+            message += String.format("%20.3f%30.2f%27.2f\n", annualRate, monthlyPay, totalPay);
         }
 
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
